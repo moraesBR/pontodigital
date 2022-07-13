@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Ponto Digital</string>
+    <string name="app_desc_logo">logo da escola mater dei</string>
+    <string name="app_desc_background">Pintura Mater Dei</string>
+    <string name="login_button">Login</string>
+    <string name="login_hint_email">login@domain.com</string>
+    <string name="login_hint_password">6 ou mais caracteres</string>
+    <string name="login_save">Lembrar login</string>
 </resources>

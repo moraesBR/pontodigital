@@ -13,8 +13,8 @@ import com.materdei.pontodigital.utils.isPasswordValid
 
 /* TODO 001.3: Criar a classe de dados para vincular nos arquivos de layout */
 class UserViewModel : ViewModel() {
-    val email = MutableLiveData<String>("")
-    val password = MutableLiveData<String>("")
+    var email = MutableLiveData<String>("")
+    var password = MutableLiveData<String>("")
 
     private var _user = MutableLiveData<User> ()
     val user: LiveData<User>
