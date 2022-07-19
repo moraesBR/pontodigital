@@ -9,8 +9,8 @@
     <!-- TODO 001.4: Vincular dado  -->
     <data>
         <variable
-            name="UserViewModel"
-            type="com.materdei.pontodigital.viewmodel.UserViewModel" />
+            name="Authentication"
+            type="com.materdei.pontodigital.viewmodel.AuthenticationViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -56,6 +56,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/img_logo"
             app:layout_constraintBottom_toBottomOf="parent"
+            android:visibility="gone"
             >
 
             <EditText
@@ -69,7 +70,7 @@
                 android:inputType="textEmailAddress"
                 android:minHeight="48dp"
                 android:padding="@dimen/margin_layout"
-                android:text="@={UserViewModel.email}"
+                android:text="@={Authentication.email}"
                 android:textColorHint="#757575"
                 android:autofillHints="" />
 
@@ -84,7 +85,7 @@
                 android:inputType="textPassword"
                 android:minHeight="48dp"
                 android:padding="@dimen/margin_layout"
-                android:text="@={UserViewModel.password}"
+                android:text="@={Authentication.password}"
                 android:textColorHint="#757575"
                 android:autofillHints="" />
 
@@ -98,6 +99,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/login_save"
                     android:textColor="@color/white"
+                    android:checked="@={Authentication.isChecked()}"
                     app:layout_constraintHorizontal_weight="4"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -114,7 +116,6 @@
                     android:textColor="@color/black"
                     android:elevation="@dimen/elevation_btn"
                     android:backgroundTint="@color/green_light"
-                    android:onClick="@{view -> UserViewModel.onClick(view)}"
                     app:layout_constraintHorizontal_weight="2"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -138,6 +139,29 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/warningLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="80dp"
+            android:layout_marginEnd="80dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img_logo"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <TextView
+                android:id="@+id/warningMsg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/login_warning"
+                android:textColor="@color/white"
+                android:gravity="center"
+                />
 
         </LinearLayout>
 

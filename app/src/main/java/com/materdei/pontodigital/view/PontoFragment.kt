@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.materdei.pontodigital.R
-import com.materdei.pontodigital.databinding.FragmentLoginBinding
 import com.materdei.pontodigital.databinding.FragmentPontoBinding
 
 class PontoFragment : Fragment() {

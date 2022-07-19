@@ -1,14 +1,12 @@
 package com.materdei.pontodigital
 
-import android.database.DatabaseUtils
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.NavigationUI
 import com.materdei.pontodigital.databinding.ActivityMainBinding
+import com.materdei.pontodigital.repository.AuthenticationRepository
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,5 +25,10 @@ class MainActivity : AppCompatActivity() {
         navController = this.findNavController(R.id.nav_host_fragment)
 
         supportActionBar?.hide()
+
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
     }
 }
