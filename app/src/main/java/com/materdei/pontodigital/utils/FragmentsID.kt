@@ -1,6 +1,6 @@
 package com.materdei.pontodigital.utils
 
-/* TODO 003.11: enum para identificar cada fragments */
+/* 003.11: enum para identificar os fragments que podem conter dados de preferências */
 enum class FragmentsID {
     LOGIN,HOME,PONTO,USER
 }

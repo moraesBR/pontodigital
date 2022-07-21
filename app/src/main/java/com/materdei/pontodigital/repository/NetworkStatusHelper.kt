@@ -15,10 +15,11 @@ import kotlinx.coroutines.withContext
 import java.net.InetSocketAddress
 import java.net.Socket
 
-/* TODO 003.02: criar a livedata classe para acompanhar e atualizar o status de rede. */
+/* 003.02: Classe que monitora o status da rede. */
 class NetworkStatusHelper (private val context: Context) : LiveData<NetworkStatus>() {
-    private object InernetAvailablity {
 
+    /* tenta estabelecer um conexão qualquer para verificar se a rede está online ou não */
+    private object InernetAvailablity {
         fun check() : Boolean {
             return try {
                 val socket = Socket()
@@ -33,6 +34,7 @@ class NetworkStatusHelper (private val context: Context) : LiveData<NetworkStatu
 
     }
 
+    /* O gerenciador de conectividade dever ser sempre buscado para evitar referências quebradas */
     val connMgr: ConnectivityManager
         get() = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
@@ -40,18 +42,19 @@ class NetworkStatusHelper (private val context: Context) : LiveData<NetworkStatu
     * chamadas simultaneamente, resultanto em interface repetidas dentro do conjunto causando
     * problemas. Por tratar isso, a coleção Set é foi a solução escolhida, pois esta estrura de
     * dados não permite elementos repetidos no conjunto. */
+    /* A razão para múltiplos está no fato dos fragments saírem do foreground antes de receber
+    * suas respostas às chamadas que fez ao livedata. Estas chamadas são passadas para o componente
+    * que está em foreground no momento. Um outra solução seria aplicar chamadas com coroutines. */
     val valideNetworkConnections: MutableSet<Network> = mutableSetOf()
 
     /* atualiza o status de rede */
     private fun announceStatus(){
         Log.i("NETWORK",valideNetworkConnections.toString())
         if(valideNetworkConnections.isNotEmpty()) {
-            Log.i("NETWORK", "Positivo!")
             postValue(NetworkStatus.Available)
         }
         else {
             postValue(NetworkStatus.Unavailable)
-            Log.i("NETWORK", "Negativo!")
         }
     }
 
@@ -67,6 +70,7 @@ class NetworkStatusHelper (private val context: Context) : LiveData<NetworkStatu
         }
     }
 
+    /* callback que lida com a disponibilidade das interfaces de redes */
     private val connectionManagerCallback = object : ConnectivityManager.NetworkCallback(){
 
         override fun onAvailable(network: Network) {
@@ -79,19 +83,19 @@ class NetworkStatusHelper (private val context: Context) : LiveData<NetworkStatu
                 it.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)
             } ?: false
 
-            /*val hasNetworkConnection = networkCapabilities
-                ?.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)?:false*/
             if (hasNetworkConnection){
                 determineInternetAccess(network)
             }
         }
 
+        /* remove as interfaces de redes que foram desligadas ou perderam sinal */
         override fun onLost(network: Network) {
             super.onLost(network)
             valideNetworkConnections.remove(network)
             announceStatus()
         }
 
+        /* filtra as interfaces de redes que possuem internet e conexão válida. */
         override fun onCapabilitiesChanged(
             network: Network,
             networkCapabilities: NetworkCapabilities

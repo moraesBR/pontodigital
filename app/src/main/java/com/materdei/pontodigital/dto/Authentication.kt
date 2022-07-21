@@ -1,8 +1,7 @@
 package com.materdei.pontodigital.dto
 
-/* TODO 003.07: Criar (ou ajustar o existente) o dado de usuário de acordo com o Firebase
-                Authentication */
 /* 001.3: Classe de dados usada para vincular os dados ao layout xml */
+/* 003.07: Classe de dados de usuário de acordo com o Firebase Authentication */
 data class Authentication(
     var email: String = "",
     var password: String = "",

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.materdei.pontodigital">
 
-    <!-- TODO 003.0: Adicionar a permissão de uso de internet -->
+    <!-- 003.0: Permissão para uso de internet -->
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application

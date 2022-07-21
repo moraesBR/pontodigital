@@ -1,6 +1,6 @@
 package com.materdei.pontodigital.dto
 
-/* TODO 003.10: Classes relacionadas ao sharedpreferences por fragments */
+/* 003.10: Classe para separar os sharedpreferences de cada fragment se houver */
 sealed class DataSharedPreferences{
     class UserPreferences: DataSharedPreferences()
     class PontoPreferences: DataSharedPreferences()
