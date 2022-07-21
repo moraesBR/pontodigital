@@ -17,7 +17,7 @@ import com.materdei.pontodigital.viewmodel.AuthenticationViewModel
 
 class UserFragment : Fragment() {
 
-    /* TODO 001.5: instanciar a classe de vinculação  */
+    /* 001.5: declaração da classe de vinculação  */
     private lateinit var binding: FragmentUserBinding
     private lateinit var authentication: AuthenticationViewModel
 
@@ -26,7 +26,7 @@ class UserFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View {
 
-        /* TODO 001.5: instanciar a classe de vinculação  */
+        /* 001.5: instância da classe de vinculação  */
         binding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_user,
@@ -36,7 +36,7 @@ class UserFragment : Fragment() {
 
         setting()
 
-        /* TODO 001.5: instanciar a classe de vinculação  */
+        /* 001.5: retorna layout com binding ao fragment  */
         return binding.root
     }
 

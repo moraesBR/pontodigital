@@ -13,18 +13,15 @@ import com.materdei.pontodigital.viewmodel.AuthenticationViewModel
 
 class HomeFragment : Fragment() {
 
-    /* TODO 001.5: instanciar a classe de vinculação  */
+    /* 001.5: declaração da classe de vinculação  */
     private lateinit var binding: FragmentHomeBinding
-
-    /* TODO 002.5: instanciar a classe de dados, no caso via ViewModel */
-    private lateinit var login: AuthenticationViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
 
-        /* TODO 001.5: instanciar a classe de vinculação  */
+        /* 001.5: instância da classe de vinculação  */
         binding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_home,
@@ -32,20 +29,18 @@ class HomeFragment : Fragment() {
             false
         )
 
-        /* TODO 002.4: atrelar o binding ao ciclo de vida do fragment */
+        /* 002.4: binding associado ao ciclo de vida do fragment */
         binding.lifecycleOwner = this
 
-        /* TODO 002.5: instanciar a classe de dados, no caso via ViewModel */
-        login = ViewModelProvider(this)[AuthenticationViewModel::class.java]
-
-        /* TODO 002.6: vincular o dado do binding ao dado real */
-        binding.userViewModel = login
+        /* 002.5: passagem da referência da instância viewmodel (responsável pela comunicação
+        *         entre ui e dados) ao binding do fragment */
+        binding.userViewModel = ViewModelProvider(this)[AuthenticationViewModel::class.java]
 
         binding.userViewModel!!.getAuthentication().observe(viewLifecycleOwner){
             binding.name.text = it!!.name
         }
 
-        /* TODO 001.5: instanciar a classe de vinculação  */
+        /* 001.5: retorna layout com binding ao fragment  */
         return binding.root
     }
 

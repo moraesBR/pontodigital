@@ -9,7 +9,7 @@ import com.materdei.pontodigital.utils.Constants.Companion.SHAREDPREFERENCES_LOG
 import com.materdei.pontodigital.utils.Constants.Companion.SHAREDPREFERENCES_LOGIN_SAVE
 import com.materdei.pontodigital.utils.FragmentsID
 
-/* TODO 003.09: Singleton para salvar e restaurar os dados em cada fragments */
+/* TODO 003.12: Singleton para salvar e restaurar os dados em cada fragments */
 object AppSharedPreferences {
 
     fun save(context: Context, fragmentsID: FragmentsID, data: DataSharedPreferences){

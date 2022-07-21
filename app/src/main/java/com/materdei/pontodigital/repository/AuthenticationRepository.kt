@@ -16,7 +16,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-/* TODO 003.06: Criar a classe que busca as informações remotamente via FirebaseAuthentication.
+/* TODO 003.09: Criar a classe que busca as informações remotamente via FirebaseAuthentication.
                A classe FirebaseAuthentication alimenta o LiveData<User> */
 class AuthenticationRepository: LiveData<Authentication>() {
 

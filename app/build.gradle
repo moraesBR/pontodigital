@@ -9,7 +9,7 @@ plugins {
 android {
     compileSdk 32
 
-    /* TODO: 001.1 - Ativar vinculações de dados */
+    /* 001.1: Habilita a vinculação de dados à UI xml*/
     dataBinding {
         enabled = true
     }

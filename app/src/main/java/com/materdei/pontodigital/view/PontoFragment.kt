@@ -11,7 +11,7 @@ import com.materdei.pontodigital.databinding.FragmentPontoBinding
 
 class PontoFragment : Fragment() {
 
-    /* TODO 001.5: instanciar a classe de vinculação  */
+    /* 001.5: declaração da classe de vinculação  */
     private lateinit var binding: FragmentPontoBinding
 
     override fun onCreateView(
@@ -19,7 +19,7 @@ class PontoFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View {
 
-        /* TODO 001.5: instanciar a classe de vinculação  */
+        /* 001.5: instância da classe de vinculação  */
         binding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_ponto,
@@ -27,7 +27,7 @@ class PontoFragment : Fragment() {
             false
         )
 
-        /* TODO 001.5: instanciar a classe de vinculação  */
+        /* 001.5: retorna layout com binding ao fragment  */
         return binding.root
     }
 

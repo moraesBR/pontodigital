@@ -22,8 +22,10 @@ import com.materdei.pontodigital.viewmodel.NetworkStatusViewModel
 
 class LoginFragment : Fragment() {
 
-    /* TODO 001.5: instanciar a classe de vinculação  */
+    /* 001.5: declaração da classe de vinculação  */
     private lateinit var binding: FragmentLoginBinding
+
+    /* TODO 003.04: declarar viewmodel para tratar o status de rede */
     private lateinit var networkStatus: NetworkStatusViewModel
 
     override fun onCreateView(
@@ -31,7 +33,7 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View {
 
-        /* TODO 001.5: instanciar a classe de vinculação  */
+        /* 001.5: instância da classe de vinculação  */
         binding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_login,
@@ -43,6 +45,7 @@ class LoginFragment : Fragment() {
         checkRequirement()
         clickable()
 
+        /* 001.5: retorna layout com binding ao fragment  */
         return binding.root
     }
 
@@ -52,17 +55,19 @@ class LoginFragment : Fragment() {
     }
 
     private fun setting(){
-        /* TODO 002.4: atrelar o binding ao ciclo de vida do fragment */
+        /* 002.4: binding associado ao ciclo de vida do fragment */
         binding.lifecycleOwner = this
 
+        /* TODO 003.05: instanciar viewmodel para tratar o status de rede */
         networkStatus = ViewModelProvider(this)[NetworkStatusViewModel::class.java]
 
-        /* TODO 002.6: vincular o dado do binding ao dado real */
+        /* 002.5: passagem da referência da instância viewmodel (responsável pela comunicação
+        *         entre ui e dados) ao binding do fragment */
         binding.authentication = ViewModelProvider(this)[AuthenticationViewModel::class.java]
 
     }
 
-    /* TODO 003.04: Verifica se há rede disponível */
+    /* TODO 003.06: Verifica se há rede disponível */
     private fun checkRequirement(){
         networkStatus.getNetworkStatus().observe(viewLifecycleOwner){
             when(it){
@@ -79,7 +84,7 @@ class LoginFragment : Fragment() {
         }
     }
 
-    /* TODO 003.15: efetua o login com/sem salvamentos dos dados */
+    /* TODO 003.19: efetua o login com/sem salvamentos dos dados */
     private fun clickable() {
         with(binding){
             loginButton.setOnClickListener {
@@ -104,7 +109,7 @@ class LoginFragment : Fragment() {
         }
     }
 
-    /* TODO 003.13: restaura os dados de login */
+    /* TODO 003.17: restaura os dados de login */
     private fun restorePreferences(){
         val savedPreferences = AppSharedPreferences.restore(requireContext(), FragmentsID.LOGIN)
                 as DataSharedPreferences.MainPreferences
@@ -112,7 +117,7 @@ class LoginFragment : Fragment() {
         binding.authentication!!.restoreData(savedPreferences)
     }
 
-    /* TODO 003.14: salva os dados de login */
+    /* TODO 003.18: salva os dados de login */
     private fun savePreferences(){
         if(binding.saveLogin.isChecked){
             AppSharedPreferences.save(
