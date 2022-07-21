@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!-- TODO 001.2: alterar tag raiz para layout  -->
+<!-- 001.2: Databing precisa que a tag raiz seja layout  -->
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.LoginFragment">
 
-    <!-- TODO 001.4: Vincular dado  -->
+    <!-- 001.4: Vincular dado  -->
     <data>
         <variable
             name="UserViewModel"

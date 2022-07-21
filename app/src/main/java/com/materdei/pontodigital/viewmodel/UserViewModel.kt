@@ -11,7 +11,7 @@ import com.materdei.pontodigital.utils.Constants.Companion.LOGIN_INVALID_DATA
 import com.materdei.pontodigital.utils.isEmailValid
 import com.materdei.pontodigital.utils.isPasswordValid
 
-/* TODO 001.3: Criar a classe de dados para vincular nos arquivos de layout */
+/* 001.3: viewmodel para mediar a comunicação entre ui e classe de dados */
 class UserViewModel : ViewModel() {
     var email = MutableLiveData<String>("")
     var password = MutableLiveData<String>("")

@@ -15,7 +15,7 @@ import com.materdei.pontodigital.viewmodel.UserViewModel
 
 class LoginFragment : Fragment() {
 
-    /* TODO 001.5: instanciar a classe de vinculação  */
+    /* 001.5: declaração da classe de vinculação  */
     private lateinit var binding: FragmentLoginBinding
 
     /* TODO 002.5: instanciar a classe de dados, no caso via ViewModel */
@@ -26,7 +26,7 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View {
 
-        /* TODO 001.5: instanciar a classe de vinculação  */
+        /* 001.5: instância da classe de vinculação  */
         binding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_login,
@@ -42,7 +42,7 @@ class LoginFragment : Fragment() {
         /* TODO 002.6: vincular o dado do binding ao dado real */
         binding.userViewModel = login
 
-        /* TODO 001.5: instanciar a classe de vinculação  */
+        /* 001.5: retorna layout com binding ao fragment  */
         return binding.root
     }
 
@@ -54,7 +54,6 @@ class LoginFragment : Fragment() {
     private fun navigate(){
         /* TODO 002.7: teste de navegação */
         binding.loginButton.setOnClickListener { view ->
-            //Navigation.findNavController(binding.root).navigate(R.id.action_loginFragment_to_homeFragment)
             view.findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
         }
     }
