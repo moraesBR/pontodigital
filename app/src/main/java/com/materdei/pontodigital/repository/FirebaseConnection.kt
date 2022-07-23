@@ -4,6 +4,11 @@ import android.net.Uri
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.*
 import com.google.firebase.auth.ktx.userProfileChangeRequest
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.QuerySnapshot
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import com.materdei.pontodigital.dto.Register
 
 /* TODO 004.01: As conexões com o firebase e as requisições são tratadas via Singleton. Cada
     requisição recebe uma ação via função lambda, diminuindo, assim, o bloilerplate em relação aos
@@ -53,6 +58,38 @@ object FirebaseConnection {
             .addOnCompleteListener {  task ->
                 action(task)
             }
+    }
+
+    fun getDocuments(pathCollection: String, action:(Task<QuerySnapshot>) -> Unit){
+        firebaseUser?.let {
+            Firebase.firestore.collection(pathCollection).get().addOnCompleteListener{ task ->
+                action(task)
+            }
+        }
+    }
+
+    fun addDocument(pathCollection: String, document: Register, action: (Task<Void>) -> Unit){
+        firebaseUser?.let {
+            Firebase.firestore.collection(pathCollection)
+                .document(document.getKey())
+                .set(document.toHashMap())
+                .addOnCompleteListener { task ->
+                    action(task)
+                }
+        }
+    }
+
+    fun checkForNewDocuments(pathCollection: String, action: (DocumentSnapshot) -> Unit){
+        firebaseUser?.let {
+            Firebase.firestore.document(pathCollection).addSnapshotListener{ snapshot, e ->
+                if (e != null){
+                    return@addSnapshotListener
+                }
+                if (snapshot != null && snapshot.exists()){
+                    action(snapshot)
+                }
+            }
+        }
     }
 
     /*fun register(email: String, password: String){

@@ -37,7 +37,7 @@ class HomeFragment : Fragment() {
         binding.userViewModel = ViewModelProvider(this)[AuthenticationViewModel::class.java]
 
         binding.userViewModel!!.getAuthentication().observe(viewLifecycleOwner){
-            binding.name.text = it!!.name
+
         }
 
         /* 001.5: retorna layout com binding ao fragment  */

@@ -58,9 +58,11 @@ dependencies {
 
     def version_material = '1.6.1'
     def version_firebase_bom = '30.1.0'
+    def version_firestore = '24.2.1'
     implementation platform("com.google.firebase:firebase-bom:$version_firebase_bom")
-    implementation 'com.google.firebase:firebase-auth-ktx'
     implementation "com.google.android.material:material:$version_material"
+    implementation 'com.google.firebase:firebase-auth-ktx'
+    implementation "com.google.firebase:firebase-firestore-ktx:$version_firestore"
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

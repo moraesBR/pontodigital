@@ -7,4 +7,15 @@
     <string name="login_hint_password">6 ou mais caracteres</string>
     <string name="login_save">Lembrar login</string>
     <string name="login_warning">Há um problem com…</string>
+    <string name="bottom_menu_dashboard">Registros</string>
+    <string name="bottom_menu_register">Ponto</string>
+    <string name="bottom_menu_settings">Configurações</string>
+    <string name="home_title">Registro de Pontos</string>
+    <string name="register_collapsed_info">Se está retraído ou não</string>
+    <string name="register_worked_hour">CH:</string>
+    <string name="app_desc_img_background">imagem de fundo</string>
+    <string name="punch_name">Nome:</string>
+    <string name="punch_data">Data:</string>
+    <string name="punch_time">Horário:</string>
+    <string name="punch_image_desc">Chegando ou saindo do trabalho</string>
 </resources>

@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import com.google.firebase.auth.FirebaseUser
 import com.materdei.pontodigital.dto.AuthState
 import com.materdei.pontodigital.dto.Authentication
-import com.materdei.pontodigital.utils.Constants.Companion.LOGIN_INVALID_DATA
+import com.materdei.pontodigital.utils.Constants.Companion.LOGIN_DATA_INVALID
 import com.materdei.pontodigital.utils.isEmailValid
 import com.materdei.pontodigital.utils.isPasswordValid
 import kotlinx.coroutines.CoroutineScope
@@ -40,7 +40,7 @@ class AuthenticationRepository: LiveData<Authentication>() {
         /* Verifica se o email e password são válidos. Senão, sinaliza erro de input */
         if (!email.isEmailValid() || !password.isPasswordValid()) {
             FirebaseConnection.firebaseUser = null
-            action(AuthState.Error(LOGIN_INVALID_DATA))
+            action(AuthState.Error(LOGIN_DATA_INVALID))
             return
         }
 

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- TODO 004.05: menu associado ao bottom navigation do main activity para navegar entre os fragments. -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/homeFragment"
+        android:title="@string/bottom_menu_dashboard"
+        android:icon="@drawable/ic_dashboard"/>
+    <item
+        android:id="@+id/pontoFragment"
+        android:title="@string/bottom_menu_register"
+        android:icon="@drawable/ic_register"/>
+    <item
+        android:id="@+id/userFragment"
+        android:title="@string/bottom_menu_settings"
+        android:icon="@drawable/ic_settings"/>
+</menu>

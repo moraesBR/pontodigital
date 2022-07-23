@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.materdei.pontodigital.R
 import com.materdei.pontodigital.databinding.FragmentLoginBinding
 import com.materdei.pontodigital.dto.AuthState
@@ -32,6 +33,11 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
+
+        /* TODO 004.07: Ao criar este fragment, o bottom navigatio da main activity deverá ser
+            ocultada. Quando o login for efetivado com sucesso, o bottom navigation deverá ser
+            visível. */
+        activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)?.visibility = View.GONE
 
         /* 001.5: instância da classe de vinculação  */
         binding = DataBindingUtil.inflate(
@@ -109,6 +115,10 @@ class LoginFragment : Fragment() {
                         pelo usuário) e navController navega para o home fragment  */
                         is AuthState.Success -> {
                             savePreferences()
+                            /* TODO 004.07: Ao criar este fragment, o bottom navigatio da main activity deverá ser
+                               ocultada. Quando o login for efetivado com sucesso, o bottom navigation deverá ser
+                               visível. */
+                            activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)?.visibility = View.VISIBLE
                             this@LoginFragment.findNavController()
                                 .navigate(R.id.action_loginFragment_to_homeFragment)
                         }
