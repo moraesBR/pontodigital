@@ -20,5 +20,6 @@ class Constants {
         val SHAREDPREFERENCES_LOGIN_EMAIL = "email"
         val SHAREDPREFERENCES_LOGIN_PASSWORD = "password"
         val SHAREDPREFERENCES_LOGIN_SAVE = "save login"
+        val PUNCHADAPTER_USERNAME_EMPTY = "Sem nome"
     }
 }

@@ -81,7 +81,7 @@ object FirebaseConnection {
 
     fun checkForNewDocuments(pathCollection: String, action: (DocumentSnapshot) -> Unit){
         firebaseUser?.let {
-            Firebase.firestore.document(pathCollection).addSnapshotListener{ snapshot, e ->
+            Firebase.firestore.collection(pathCollection).document().addSnapshotListener{ snapshot, e ->
                 if (e != null){
                     return@addSnapshotListener
                 }
