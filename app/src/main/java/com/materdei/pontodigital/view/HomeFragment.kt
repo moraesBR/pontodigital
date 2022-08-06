@@ -1,6 +1,8 @@
 package com.materdei.pontodigital.view
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -83,11 +85,16 @@ class HomeFragment : Fragment() {
         punchViewModel.fetching.observe(viewLifecycleOwner){ result ->
             when(result){
                 is Response.Loading -> {
-                    Log.i("INFO","OLÁ")
+                    showingData(false)
                 }
                 is Response.Success -> {
-                    Log.i("INFO","OI")
-                    registerAdapter.updateRegisters(result.data.toRegister())
+                    Handler(Looper.getMainLooper()).postDelayed(
+                        {
+                            showingData(true)
+                            registerAdapter.updateRegisters(result.data.toRegister())
+                        },
+                        1500 // value in milliseconds
+                    )
                 }
                 is Response.Error -> {
                     Log.i("INFO","TCHAU")
@@ -97,4 +104,15 @@ class HomeFragment : Fragment() {
 
     }
 
+    /* TODO 004.23: Gerencia a visibilidade do recyclerview e progressbar */
+    private fun showingData(isAvailable: Boolean){
+        if (isAvailable){
+            binding.registerRecyclerView.visibility = View.VISIBLE
+            binding.waitingData.visibility = View.GONE
+        }
+        else{
+            binding.registerRecyclerView.visibility = View.GONE
+            binding.waitingData.visibility = View.VISIBLE
+        }
+    }
 }
