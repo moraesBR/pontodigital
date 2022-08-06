@@ -115,7 +115,7 @@ class LoginFragment : Fragment() {
                         pelo usuário) e navController navega para o home fragment  */
                         is AuthState.Success -> {
                             savePreferences()
-                            /* TODO 004.07: Ao criar este fragment, o bottom navigatio da main activity deverá ser
+                            /* TODO 004.07: Ao criar este fragment, o bottom navigation da main activity deverá ser
                                ocultada. Quando o login for efetivado com sucesso, o bottom navigation deverá ser
                                visível. */
                             activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)?.visibility = View.VISIBLE
