@@ -1,16 +1,15 @@
 package com.materdei.pontodigital.repository
 
-import androidx.lifecycle.LiveData
-import com.materdei.pontodigital.dto.Register
+import com.materdei.pontodigital.di.FirebaseConnection
+import com.materdei.pontodigital.domain.model.DataModel.Punch
+import com.materdei.pontodigital.domain.model.Response
+import com.materdei.pontodigital.domain.repository.DataRepository
 import com.materdei.pontodigital.utils.Constants.Companion.REGISTERVIEWMODEL_REGISTERS_COLLECTION
 import com.materdei.pontodigital.utils.Constants.Companion.REGISTERVIEWMODEL_ROOT_COLLECTION
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.flow.Flow
 
-/* TODO 004.11: Repositório para obter os dados de punch que são encapsulados em livedata. */
-class PunchRepository : LiveData<MutableList<Register.Punch>>() {
+/* TODO 004.14: Repositório para obter os dados de punch que são encapsulados em livedata via Flow. */
+class PunchRepository : DataRepository <Punch> {
 
     private val pathCollection by lazy {
             REGISTERVIEWMODEL_ROOT_COLLECTION +
@@ -18,43 +17,13 @@ class PunchRepository : LiveData<MutableList<Register.Punch>>() {
             REGISTERVIEWMODEL_REGISTERS_COLLECTION
     }
 
-    fun get(){
-        FirebaseConnection.getDocuments(pathCollection){ task ->
-            CoroutineScope(Dispatchers.IO).launch {
-                withContext(Dispatchers.Main) {
-                    if(task.isSuccessful){
-                        value = task.result.toObjects(Register.Punch::class.java).toMutableList()
-                    }
-                }
-            }
-        }
-    }
+    override suspend fun get(): Flow<Response<List<Punch>>> =
+        FirebaseConnection.getDocuments(pathCollection)
 
-    fun add(punch: Register.Punch){
-        FirebaseConnection.addDocument(pathCollection, punch){ task ->
-            CoroutineScope(Dispatchers.IO).launch {
-                withContext(Dispatchers.Main) {
-                    if (task.isSuccessful) {
-                        value!!.add(punch)
-                    }
-                }
-            }
-        }
-    }
+    override suspend fun add(data: Punch): Flow<Response<Void?>> =
+        FirebaseConnection.addDocument(pathCollection,data)
 
-    fun listening(){
-        FirebaseConnection.checkForNewDocuments(pathCollection){ snapshot ->
-            CoroutineScope(Dispatchers.IO).launch {
-                withContext(Dispatchers.Main) {
-                    snapshot.toObject(Register.Punch::class.java)?.let { value!!.add(it) }
-                }
-            }
-        }
-    }
+    override suspend fun delete(key: String): Flow<Response<Void?>> =
+        FirebaseConnection.deleteDocument(pathCollection,key)
 
-    override fun onActive() {
-        super.onActive()
-        if (value == null) { get() }
-        else { if (value!!.isNotEmpty()) { listening() } else { get() } }
-    }
 }

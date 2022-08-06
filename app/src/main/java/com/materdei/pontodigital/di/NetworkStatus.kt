@@ -1,4 +1,4 @@
-package com.materdei.pontodigital.dto
+package com.materdei.pontodigital.di
 
 /* 003.01: Classe para sinalizar o status da rede */
 sealed class NetworkStatus {

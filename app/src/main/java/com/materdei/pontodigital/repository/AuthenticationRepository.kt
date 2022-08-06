@@ -2,8 +2,9 @@ package com.materdei.pontodigital.repository
 
 import androidx.lifecycle.LiveData
 import com.google.firebase.auth.FirebaseUser
-import com.materdei.pontodigital.dto.AuthState
-import com.materdei.pontodigital.dto.Authentication
+import com.materdei.pontodigital.di.AuthState
+import com.materdei.pontodigital.di.Authentication
+import com.materdei.pontodigital.di.FirebaseConnection
 import com.materdei.pontodigital.utils.Constants.Companion.LOGIN_DATA_INVALID
 import com.materdei.pontodigital.utils.isEmailValid
 import com.materdei.pontodigital.utils.isPasswordValid

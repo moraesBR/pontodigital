@@ -11,10 +11,10 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.materdei.pontodigital.R
 import com.materdei.pontodigital.databinding.FragmentLoginBinding
-import com.materdei.pontodigital.dto.AuthState
-import com.materdei.pontodigital.dto.DataSharedPreferences
-import com.materdei.pontodigital.dto.NetworkStatus
-import com.materdei.pontodigital.repository.AppSharedPreferences
+import com.materdei.pontodigital.di.AuthState
+import com.materdei.pontodigital.di.DataSharedPreferences
+import com.materdei.pontodigital.di.NetworkStatus
+import com.materdei.pontodigital.di.AppSharedPreferences
 import com.materdei.pontodigital.utils.Constants.Companion.LOGIN_NO_INTERNET
 import com.materdei.pontodigital.utils.FragmentsID
 import com.materdei.pontodigital.utils.printmsg

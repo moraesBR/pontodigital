@@ -6,13 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.OnBackPressedCallback
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import com.materdei.pontodigital.R
 import com.materdei.pontodigital.databinding.FragmentUserBinding
-import com.materdei.pontodigital.dto.Authentication
 import com.materdei.pontodigital.viewmodel.AuthenticationViewModel
 
 class UserFragment : Fragment() {

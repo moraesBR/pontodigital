@@ -1,4 +1,4 @@
-package com.materdei.pontodigital.dto
+package com.materdei.pontodigital.di
 
 /* 001.3: Classe de dados usada para vincular os dados ao layout xml */
 /* 003.07: Classe de dados de usuário de acordo com o Firebase Authentication */

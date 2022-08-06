@@ -1,12 +1,12 @@
-package com.materdei.pontodigital.dto
+package com.materdei.pontodigital.domain.model
 
 /* TODO 004.10: Modelo de dado para registro de ponto */
-sealed class Register {
+sealed class DataModel {
 
     abstract fun getKey(): String
     abstract fun toHashMap(): HashMap<String, String>
 
-    data class Punch(val date: String, val time: String, val punch: String) : Register() {
+    data class Punch(val date: String, val time: String, val punch: String) : DataModel() {
         constructor() : this("", "", "")
 
         override fun getKey() = "$date@$time"
@@ -21,7 +21,7 @@ sealed class Register {
     }
 
     data class Workday(val date: String, val hours: String, val justification: String = "") :
-        Register() {
+        DataModel() {
         constructor() : this("", "", "")
 
         override fun getKey() = date
@@ -33,4 +33,25 @@ sealed class Register {
             )
         }
     }
+
+    data class Register(
+        val workday: Workday,
+        val punches: List<Punch>,
+        val isNew: Boolean
+    ): DataModel(){
+
+        override fun getKey() = workday.date
+
+        override fun toHashMap(): HashMap<String, String> {
+            return hashMapOf(
+                "workday" to workday.toHashMap().toString(),
+                "punches" to punches.map { it.toHashMap() }.toString()
+            )
+        }
+
+    }
+
 }
+
+
+

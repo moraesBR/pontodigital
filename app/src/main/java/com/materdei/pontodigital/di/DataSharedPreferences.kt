@@ -1,4 +1,4 @@
-package com.materdei.pontodigital.dto
+package com.materdei.pontodigital.di
 
 /* 003.10: Classe para separar os sharedpreferences de cada fragment se houver */
 sealed class DataSharedPreferences{

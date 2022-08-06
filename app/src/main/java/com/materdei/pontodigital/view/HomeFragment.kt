@@ -8,15 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.materdei.pontodigital.R
 import com.materdei.pontodigital.adapters.RegisterAdapter
 import com.materdei.pontodigital.databinding.FragmentHomeBinding
-import com.materdei.pontodigital.dto.Authentication
+import com.materdei.pontodigital.di.Authentication
+import com.materdei.pontodigital.domain.model.Response
+import com.materdei.pontodigital.utils.toRegister
 import com.materdei.pontodigital.viewmodel.AuthenticationViewModel
-import com.materdei.pontodigital.viewmodel.RegisterViewModel
+import com.materdei.pontodigital.viewmodel.PunchViewModel
 
 class HomeFragment : Fragment() {
 
@@ -24,20 +24,11 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private val authenticationViewModel: AuthenticationViewModel by viewModels()
 
-    /* TODO 004:17: instanciamento do viewmodel registers */
-    private val registerViewModel: RegisterViewModel by viewModels()
-    /* TODO 004:18: instanciamento do adaptador registers */
-    private var registerAdapter = RegisterAdapter(mutableListOf(), Authentication())
+    /* TODO 004:18: instanciamento do viewmodel registers */
+    private val punchViewModel: PunchViewModel by viewModels()
 
-    override fun onStop() {
-        super.onStop()
-        registerViewModel.onStop(viewLifecycleOwner)
-    }
-
-    override fun onStart() {
-        super.onStart()
-        registerViewModel.onStart(viewLifecycleOwner)
-    }
+    /* TODO 004:19: instanciamento do adaptador registers */
+    private var registerAdapter = RegisterAdapter(listOf(), Authentication())
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -68,7 +59,7 @@ class HomeFragment : Fragment() {
         *         entre ui e dados) ao binding do fragment */
         binding.userViewModel = authenticationViewModel
 
-        /* TODO 004:19: Configuração inicial do recycler view */
+        /* TODO 004:20: Configuração inicial do recycler view */
         with(binding.registerRecyclerView){
             layoutManager = LinearLayoutManager(
                 requireContext(),
@@ -83,15 +74,25 @@ class HomeFragment : Fragment() {
 
     private fun setting(){
 
-        /* TODO 004.20: Atualização do adaptador do recycler view */
+        /* TODO 004.21: Atualização do adaptador do recycler view */
         authenticationViewModel.getAuthentication().observe(viewLifecycleOwner){
             registerAdapter.updateUser(it)
         }
 
-        /* TODO 004.21: Atualização do adaptador do recycler view */
-        registerViewModel.registers.observe(viewLifecycleOwner){
-            Log.i("INFO",it.map { it.value }.toMutableList().toString())
-            registerAdapter.updateRegisters(it.map { it.value }.toMutableList())
+        /* TODO 004.22: Atualização do adaptador do recycler view */
+        punchViewModel.fetching.observe(viewLifecycleOwner){ result ->
+            when(result){
+                is Response.Loading -> {
+                    Log.i("INFO","OLÁ")
+                }
+                is Response.Success -> {
+                    Log.i("INFO","OI")
+                    registerAdapter.updateRegisters(result.data.toRegister())
+                }
+                is Response.Error -> {
+                    Log.i("INFO","TCHAU")
+                }
+            }
         }
 
     }

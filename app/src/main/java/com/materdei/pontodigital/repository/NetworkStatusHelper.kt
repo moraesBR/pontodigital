@@ -5,9 +5,10 @@ import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
 import android.net.NetworkRequest
+import android.os.Build
 import android.util.Log
 import androidx.lifecycle.LiveData
-import com.materdei.pontodigital.dto.NetworkStatus
+import com.materdei.pontodigital.di.NetworkStatus
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -79,8 +80,12 @@ class NetworkStatusHelper (private val context: Context) : LiveData<NetworkStatu
             /* identifica as interfaces de rede e checa se há capacidade de internet */
             val networkCapabilities = connMgr.getNetworkCapabilities(network)
             val hasNetworkConnection = networkCapabilities?.let {
-                it.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) &&
-                it.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    it.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) &&
+                    it.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)
+                } else {
+                    it.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+                }
             } ?: false
 
             if (hasNetworkConnection){
@@ -117,11 +122,18 @@ class NetworkStatusHelper (private val context: Context) : LiveData<NetworkStatu
     /* registra o monitoramento de rede */
     override fun onActive() {
         super.onActive()
-        val networkRequest = NetworkRequest
-            .Builder()
-            .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
-            .addCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)
-            .build()
+        val networkRequest = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            NetworkRequest
+                .Builder()
+                .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+                .addCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)
+                .build()
+        } else {
+            NetworkRequest
+                .Builder()
+                .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+                .build()
+        }
 
         connMgr.registerNetworkCallback(networkRequest,connectionManagerCallback)
     }

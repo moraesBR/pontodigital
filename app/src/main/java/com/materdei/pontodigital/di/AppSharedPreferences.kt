@@ -1,8 +1,7 @@
-package com.materdei.pontodigital.repository
+package com.materdei.pontodigital.di
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.materdei.pontodigital.dto.DataSharedPreferences
 import com.materdei.pontodigital.utils.Constants.Companion.SHAREDPREFERENCES
 import com.materdei.pontodigital.utils.Constants.Companion.SHAREDPREFERENCES_LOGIN_EMAIL
 import com.materdei.pontodigital.utils.Constants.Companion.SHAREDPREFERENCES_LOGIN_PASSWORD

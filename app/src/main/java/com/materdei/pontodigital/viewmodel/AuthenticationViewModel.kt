@@ -2,8 +2,8 @@ package com.materdei.pontodigital.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.materdei.pontodigital.dto.AuthState
-import com.materdei.pontodigital.dto.DataSharedPreferences
+import com.materdei.pontodigital.di.AuthState
+import com.materdei.pontodigital.di.DataSharedPreferences
 import com.materdei.pontodigital.repository.AuthenticationRepository
 
 /* 001.3: viewmodel para mediar a comunicação entre ui e classe de dados */

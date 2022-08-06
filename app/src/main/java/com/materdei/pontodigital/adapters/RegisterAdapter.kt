@@ -10,12 +10,12 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.materdei.pontodigital.R
-import com.materdei.pontodigital.dto.Authentication
-import com.materdei.pontodigital.dto.RegisterDetails
+import com.materdei.pontodigital.di.Authentication
+import com.materdei.pontodigital.domain.model.DataModel
 
 /* TODO 004.16: recycler view que gerencia a apresentação dos RegisterDetails, principalmente
 *   dos workdays */
-class RegisterAdapter (private var registers: MutableList<RegisterDetails>, private var user: Authentication) :
+class RegisterAdapter (private var registers: List<DataModel.Register>, private var user: Authentication) :
     RecyclerView.Adapter<RegisterAdapter.DataViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataViewHolder {
@@ -59,7 +59,7 @@ class RegisterAdapter (private var registers: MutableList<RegisterDetails>, priv
             }
         }
 
-        fun bind(data: RegisterDetails){
+        fun bind(data: DataModel.Register){
             with(data.workday){
                 dateTextView.text = date
                 workedHourTextView.text = hours
@@ -79,13 +79,13 @@ class RegisterAdapter (private var registers: MutableList<RegisterDetails>, priv
 
     }
 
-    fun updateRegisters(newRegisters: MutableList<RegisterDetails>) {
+    fun updateRegisters(newRegisters: List<DataModel.Register>) {
         registers = newRegisters
-        notifyDataSetChanged()
+        notifyItemRangeChanged(0,registers.size)
     }
 
     fun updateUser(newUser: Authentication) {
         user = newUser
-        notifyDataSetChanged()
+        //notifyDataSetChanged()
     }
 }
