@@ -4,7 +4,7 @@ import com.materdei.pontodigital.domain.model.DataModel
 import com.materdei.pontodigital.domain.model.Response
 import kotlinx.coroutines.flow.Flow
 
-/* TODO 004.13: Interface para padronizar os repositórios */
+/* 004.13: Interface para padronizar os repositórios */
 interface DataRepository <T: DataModel> {
 
     suspend fun get(): Flow<Response<List<T>>>

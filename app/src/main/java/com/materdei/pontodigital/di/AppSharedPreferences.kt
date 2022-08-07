@@ -17,7 +17,7 @@ object AppSharedPreferences {
 
         when(fragmentsID){
             FragmentsID.USER -> saveUserPreferences(editor,data)
-            FragmentsID.PONTO -> savePontoPreferences(editor,data)
+            FragmentsID.PUNCH -> savePontoPreferences(editor,data)
             FragmentsID.HOME -> saveHomePreferences(editor,data)
             FragmentsID.LOGIN -> saveMainPreferences(editor,data)
         }
@@ -54,7 +54,7 @@ object AppSharedPreferences {
 
         return when(fragmentsID){
             FragmentsID.USER -> loadUserPreferences(sharedPreferences)
-            FragmentsID.PONTO -> loadPontoPreferences(sharedPreferences)
+            FragmentsID.PUNCH -> loadPontoPreferences(sharedPreferences)
             FragmentsID.HOME -> loadHomePreferences(sharedPreferences)
             FragmentsID.LOGIN -> loadMainPreferences(sharedPreferences)
         }

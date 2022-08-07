@@ -14,7 +14,7 @@ import com.materdei.pontodigital.utils.Constants.Companion.PUNCHADAPTER_USERNAME
 import com.materdei.pontodigital.utils.PunchCard
 
 
-/* TODO 004.17: recycler view que gerencia a apresentação dos punches */
+/* 004.17: recycler view que gerencia a apresentação dos punches */
 class PunchAdapter(private val punches: List<Punch>, private val user: Authentication) : RecyclerView.Adapter<PunchAdapter.PunchViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PunchViewHolder {

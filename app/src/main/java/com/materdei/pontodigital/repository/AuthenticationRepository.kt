@@ -15,7 +15,7 @@ import kotlinx.coroutines.withContext
 
 /* 003.09: Repositório que busca as informações remotamente via FirebaseAuthentication e as
 *          armazena no livedate Authentication. */
-/* TODO 004.02: Todos os códigos referentes ao acesso no Firebase foram removidos daqui. Agora só
+/* 004.02: Todos os códigos referentes ao acesso no Firebase foram removidos daqui. Agora só
 *   trata dos dados de usuário e sua devida conversão para o Authentication */
 class AuthenticationRepository: LiveData<Authentication>() {
 
@@ -45,7 +45,7 @@ class AuthenticationRepository: LiveData<Authentication>() {
             return
         }
 
-        /* TODO 004.3: agora a função só sabe se o login teve sucesso ou não, repassando uma função
+        /* 004.3: agora a função só sabe se o login teve sucesso ou não, repassando uma função
         *   lambda tratando a autenticação em função deste resultado.  */
         FirebaseConnection.login(email,password){ task, user ->
             CoroutineScope(Dispatchers.IO).launch {

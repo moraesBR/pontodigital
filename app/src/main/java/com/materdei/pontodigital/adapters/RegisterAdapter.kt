@@ -13,7 +13,7 @@ import com.materdei.pontodigital.R
 import com.materdei.pontodigital.di.Authentication
 import com.materdei.pontodigital.domain.model.DataModel
 
-/* TODO 004.16: recycler view que gerencia a apresentação dos RegisterDetails, principalmente
+/* 004.16: recycler view que gerencia a apresentação dos RegisterDetails, principalmente
 *   dos workdays */
 class RegisterAdapter (private var registers: List<DataModel.Register>, private var user: Authentication) :
     RecyclerView.Adapter<RegisterAdapter.DataViewHolder>() {

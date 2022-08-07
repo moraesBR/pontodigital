@@ -18,4 +18,8 @@
     <string name="punch_data">Data:</string>
     <string name="punch_time">Horário:</string>
     <string name="punch_image_desc">Chegando ou saindo do trabalho</string>
+    <string name="navigation_label_punch">Ponto Screen</string>
+    <string name="navigation_label_login">Login Screen</string>
+    <string name="navigation_label_home">Home Screen</string>
+    <string name="navigation_label_user">User Screen</string>
 </resources>

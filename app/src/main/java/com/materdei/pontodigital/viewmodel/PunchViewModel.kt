@@ -6,7 +6,7 @@ import com.materdei.pontodigital.domain.model.Response
 import com.materdei.pontodigital.domain.model.Response.*
 import com.materdei.pontodigital.repository.PunchRepository
 
-/* TODO 004.15: ponto de comunicação entre a ui e os dados punches */
+/* 004.15: ponto de comunicação entre a ui e os dados punches */
 class PunchViewModel : ViewModel() {
 
     val punchRepository = PunchRepository()

@@ -1,6 +1,6 @@
 package com.materdei.pontodigital.domain.model
 
-/* TODO 004.10: Modelo de dado para registro de ponto */
+/* 004.10: Modelo de dado para registro de ponto */
 sealed class DataModel {
 
     abstract fun getKey(): String

@@ -8,7 +8,7 @@ import com.materdei.pontodigital.utils.Constants.Companion.REGISTERVIEWMODEL_REG
 import com.materdei.pontodigital.utils.Constants.Companion.REGISTERVIEWMODEL_ROOT_COLLECTION
 import kotlinx.coroutines.flow.Flow
 
-/* TODO 004.14: Repositório para obter os dados de punch que são encapsulados em livedata via Flow. */
+/* 004.14: Repositório para obter os dados de punch que são encapsulados em livedata via Flow. */
 class PunchRepository : DataRepository <Punch> {
 
     private val pathCollection by lazy {

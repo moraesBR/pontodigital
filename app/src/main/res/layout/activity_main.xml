@@ -12,7 +12,7 @@
         android:orientation="vertical"
         >
 
-        <!-- TODO 004.04: bottom navigation para controlar a navegação -->
+        <!-- 004.04: bottom navigation para controlar a navegação -->
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation"
             android:layout_width="match_parent"

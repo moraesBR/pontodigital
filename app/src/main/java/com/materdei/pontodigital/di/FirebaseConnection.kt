@@ -17,10 +17,10 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.flow
 
-/* TODO 004.01: As conexões com o firebase e as requisições são tratadas via Singleton. Cada
+/* 004.01: As conexões com o firebase e as requisições são tratadas via Singleton. Cada
     requisição recebe uma ação via função lambda, diminuindo, assim, o bloilerplate em relação aos
     códigos do firebase */
-/* TODO 004.12: Firebase connection trata também da comunicação com o firestore utizando flow */
+/* 004.12: Firebase connection trata também da comunicação com o firestore utizando flow */
 object FirebaseConnection {
     private val firebaseAuth: FirebaseAuth
         get() = FirebaseAuth.getInstance()

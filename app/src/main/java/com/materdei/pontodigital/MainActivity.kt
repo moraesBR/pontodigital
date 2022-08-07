@@ -25,14 +25,11 @@ class MainActivity : AppCompatActivity() {
         /* 002.3: instância da classe de navegação */
         navController = this.findNavController(R.id.nav_host_fragment)
 
-        /* TODO 004.06: atrelar o navController ao bottom navigation */
+        /* 004.06: atrelar o navController ao bottom navigation */
         binding.bottomNavigation.setupWithNavController(navController)
 
         supportActionBar?.hide()
 
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-    }
 }

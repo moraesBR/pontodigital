@@ -4,7 +4,7 @@
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".view.PontoFragment">
+    tools:context=".view.PunchFragment">
 
     <!-- 001.4: Vincular dado  -->
     <data>

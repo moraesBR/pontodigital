@@ -26,10 +26,10 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private val authenticationViewModel: AuthenticationViewModel by viewModels()
 
-    /* TODO 004:18: instanciamento do viewmodel registers */
+    /* 004:18: instanciamento do viewmodel registers */
     private val punchViewModel: PunchViewModel by viewModels()
 
-    /* TODO 004:19: instanciamento do adaptador registers */
+    /* 004:19: instanciamento do adaptador registers */
     private var registerAdapter = RegisterAdapter(listOf(), Authentication())
 
     override fun onCreateView(
@@ -61,7 +61,7 @@ class HomeFragment : Fragment() {
         *         entre ui e dados) ao binding do fragment */
         binding.userViewModel = authenticationViewModel
 
-        /* TODO 004:20: Configuração inicial do recycler view */
+        /* 004:20: Configuração inicial do recycler view */
         with(binding.registerRecyclerView){
             layoutManager = LinearLayoutManager(
                 requireContext(),
@@ -76,12 +76,12 @@ class HomeFragment : Fragment() {
 
     private fun setting(){
 
-        /* TODO 004.21: Atualização do adaptador do recycler view */
+        /* 004.21: Atualização do adaptador do recycler view */
         authenticationViewModel.getAuthentication().observe(viewLifecycleOwner){
             registerAdapter.updateUser(it)
         }
 
-        /* TODO 004.22: Atualização do adaptador do recycler view */
+        /* 004.22: Atualização do adaptador do recycler view */
         punchViewModel.fetching.observe(viewLifecycleOwner){ result ->
             when(result){
                 is Response.Loading -> {
@@ -104,7 +104,7 @@ class HomeFragment : Fragment() {
 
     }
 
-    /* TODO 004.23: Gerencia a visibilidade do recyclerview e progressbar */
+    /* 004.23: Gerencia a visibilidade do recyclerview e progressbar */
     private fun showingData(isAvailable: Boolean){
         if (isAvailable){
             binding.registerRecyclerView.visibility = View.VISIBLE

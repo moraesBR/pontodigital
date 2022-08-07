@@ -10,7 +10,7 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.materdei.pontodigital.view.LoginFragment"
-        android:label="fragment_login"
+        android:label="@string/navigation_label_login"
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_loginFragment_to_homeFragment"
@@ -19,16 +19,16 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.materdei.pontodigital.view.HomeFragment"
-        android:label="fragment_home"
+        android:label="@string/navigation_label_home"
         tools:layout="@layout/fragment_home" />
     <fragment
-        android:id="@+id/pontoFragment"
-        android:name="com.materdei.pontodigital.view.PontoFragment"
-        android:label="fragment_ponto"
-        tools:layout="@layout/fragment_ponto" />
+        android:id="@+id/punchFragment"
+        android:name="com.materdei.pontodigital.view.PunchFragment"
+        android:label="@string/navigation_label_punch"
+        tools:layout="@layout/fragment_punch" />
     <fragment
         android:id="@+id/userFragment"
         android:name="com.materdei.pontodigital.view.UserFragment"
-        android:label="fragment_user"
+        android:label="@string/navigation_label_user"
         tools:layout="@layout/fragment_user" />
 </navigation>

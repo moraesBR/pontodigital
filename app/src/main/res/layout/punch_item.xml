@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!-- TODO 004.09: cardview para apresentar os dados de punch no recyclerview workday em home fragment -->
+<!-- 004.09: cardview para apresentar os dados de punch no recyclerview workday em home fragment -->
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"

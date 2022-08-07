@@ -7,12 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.materdei.pontodigital.R
-import com.materdei.pontodigital.databinding.FragmentPontoBinding
+import com.materdei.pontodigital.databinding.FragmentPunchBinding
 
-class PontoFragment : Fragment() {
+class PunchFragment : Fragment() {
 
     /* 001.5: declaração da classe de vinculação  */
-    private lateinit var binding: FragmentPontoBinding
+    private lateinit var binding: FragmentPunchBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -22,7 +22,7 @@ class PontoFragment : Fragment() {
         /* 001.5: instância da classe de vinculação  */
         binding = DataBindingUtil.inflate(
             inflater,
-            R.layout.fragment_ponto,
+            R.layout.fragment_punch,
             container,
             false
         )
