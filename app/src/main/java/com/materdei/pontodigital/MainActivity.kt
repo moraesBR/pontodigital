@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         /* 004.06: atrelar o navController ao bottom navigation */
         binding.bottomNavigation.setupWithNavController(navController)
 
-        supportActionBar?.hide()
+        //supportActionBar?.hide()
 
     }
 

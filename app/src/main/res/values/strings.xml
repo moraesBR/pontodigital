@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Ponto Digital</string>
+    <string name="app_name">Mater Dei: Ponto Digital</string>
     <string name="app_desc_logo">logo da escola mater dei</string>
     <string name="app_desc_background">Pintura Mater Dei</string>
     <string name="login_button">Login</string>
@@ -14,12 +14,22 @@
     <string name="register_collapsed_info">Se está retraído ou não</string>
     <string name="register_worked_hour">CH:</string>
     <string name="app_desc_img_background">imagem de fundo</string>
+    <string name="punch_title">Registrando Entrada</string>
     <string name="punch_name">Nome:</string>
-    <string name="punch_data">Data:</string>
+    <string name="punch_name_text">Fulano de Tal</string>
+    <string name="punch_type">Tipo:</string>
+    <string name="punch_type_text">Entrada</string>
+    <string name="punch_date">Data:</string>
+    <string name="punch_date_text">2022/07/04</string>
     <string name="punch_time">Horário:</string>
+    <string name="punch_time_text">8:00 A.M.</string>
     <string name="punch_image_desc">Chegando ou saindo do trabalho</string>
     <string name="navigation_label_punch">Ponto Screen</string>
     <string name="navigation_label_login">Login Screen</string>
     <string name="navigation_label_home">Home Screen</string>
     <string name="navigation_label_user">User Screen</string>
+    <string name="punch_button_text">Confirma</string>
+    <string name="punch_card_title">Próximo Registro</string>
+    <string name="punch_img_desc">Tipo de Ponto</string>
+
 </resources>

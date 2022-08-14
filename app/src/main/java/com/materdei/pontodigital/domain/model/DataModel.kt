@@ -18,6 +18,19 @@ sealed class DataModel {
                 "punch" to punch
             )
         }
+
+        /* TODO 005.09: teste de igual entre dois punch em função da data e horário */
+        override fun equals(other: Any?): Boolean {
+            other as Punch
+            if( date == other.date && time == other.time) return true
+            return false
+        }
+
+        override fun hashCode(): Int {
+            var result = date.hashCode()
+            result = 31 * result + time.hashCode()
+            return result
+        }
     }
 
     data class Workday(val date: String, val hours: String, val justification: String = "") :

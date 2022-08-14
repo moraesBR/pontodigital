@@ -6,8 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.materdei.pontodigital.R
 import com.materdei.pontodigital.databinding.FragmentUserBinding
 import com.materdei.pontodigital.viewmodel.AuthenticationViewModel
@@ -35,6 +37,15 @@ class UserFragment : Fragment() {
 
         /* 001.5: retorna layout com binding ao fragment  */
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        activity?.apply {
+            findViewById<BottomNavigationView>(R.id.bottom_navigation)?.apply {
+                if (!isVisible) visibility = View.VISIBLE
+            }
+        }
     }
 
     private fun setting() {

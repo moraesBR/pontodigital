@@ -6,6 +6,7 @@ import android.util.Patterns
 import android.widget.Toast
 import com.materdei.pontodigital.domain.model.DataModel
 import java.text.DecimalFormat
+import java.time.LocalDateTime
 
 fun String.isEmailValid(): Boolean{
     return Patterns.EMAIL_ADDRESS.matcher(this).matches()
@@ -71,3 +72,16 @@ fun List<DataModel.Punch>.toRegister(): List<DataModel.Register> = this
             false
         )
     }.toList()
+
+
+fun getDate() = LocalDateTime.now().let {
+    val mFormat = DecimalFormat("00")
+    "${it.year}-${mFormat.format(it.month.value)}-${mFormat.format(it.dayOfMonth)}"
+}
+
+fun getTime() = LocalDateTime.now().let {
+    val mFormat = DecimalFormat("00")
+    "${it.hour}-${mFormat.format(it.minute)}"
+}
+
+

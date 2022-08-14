@@ -4,6 +4,7 @@ import android.net.Uri
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.*
 import com.google.firebase.auth.ktx.userProfileChangeRequest
+import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import kotlinx.coroutines.tasks.await
 import com.google.firebase.firestore.ktx.toObjects

@@ -5,6 +5,9 @@
 
     <!-- 003.0: Permissão para uso de internet -->
     <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- TODO 005.01: Permissão para uso de Geolocalização -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
     <application
         android:allowBackup="true"

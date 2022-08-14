@@ -118,7 +118,6 @@ class LoginFragment : Fragment() {
                             /* 004.07: Ao criar este fragment, o bottom navigation da main activity deverá ser
                                ocultada. Quando o login for efetivado com sucesso, o bottom navigation deverá ser
                                visível. */
-                            activity?.findViewById<BottomNavigationView>(R.id.bottom_navigation)?.visibility = View.VISIBLE
                             this@LoginFragment.findNavController()
                                 .navigate(R.id.action_loginFragment_to_homeFragment)
                         }
