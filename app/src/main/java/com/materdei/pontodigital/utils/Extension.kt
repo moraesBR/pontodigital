@@ -81,7 +81,7 @@ fun getDate() = LocalDateTime.now().let {
 
 fun getTime() = LocalDateTime.now().let {
     val mFormat = DecimalFormat("00")
-    "${it.hour}-${mFormat.format(it.minute)}"
+    "${mFormat.format(it.hour)}-${mFormat.format(it.minute)}"
 }
 
 

@@ -24,12 +24,15 @@
     <string name="punch_time">Horário:</string>
     <string name="punch_time_text">8:00 A.M.</string>
     <string name="punch_image_desc">Chegando ou saindo do trabalho</string>
+    <string name="punch_button_text">Confirma</string>
+    <string name="punch_card_title">Próximo Registro</string>
+    <string name="punch_img_desc">Tipo de Ponto</string>
+    <string name="punch_previous">Último Ponto</string>
+    <string name="punch_next">Próximo Ponto</string>
     <string name="navigation_label_punch">Ponto Screen</string>
     <string name="navigation_label_login">Login Screen</string>
     <string name="navigation_label_home">Home Screen</string>
     <string name="navigation_label_user">User Screen</string>
-    <string name="punch_button_text">Confirma</string>
-    <string name="punch_card_title">Próximo Registro</string>
-    <string name="punch_img_desc">Tipo de Ponto</string>
+
 
 </resources>

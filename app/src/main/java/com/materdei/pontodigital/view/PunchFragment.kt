@@ -16,7 +16,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.materdei.pontodigital.R
 import com.materdei.pontodigital.databinding.FragmentPunchBinding
 import com.materdei.pontodigital.di.Biometric
-import com.materdei.pontodigital.domain.model.DataModel
+import com.materdei.pontodigital.domain.model.DataModel.Punch
 import com.materdei.pontodigital.domain.model.Response.Loading
 import com.materdei.pontodigital.domain.model.Response.Success
 import com.materdei.pontodigital.domain.model.Response.Error
@@ -95,11 +95,11 @@ class PunchFragment : Fragment() {
     private fun visibility(isVisible: Boolean, msg: String = ""){
         if (isVisible){
             binding.punchLoading.visibility = View.INVISIBLE
-            binding.punchCard.visibility = View.VISIBLE
+            binding.punchCardviews.visibility = View.VISIBLE
         }
         else{
             binding.punchLoading.visibility = View.VISIBLE
-            binding.punchCard.visibility = View.INVISIBLE
+            binding.punchCardviews.visibility = View.INVISIBLE
         }
 
         if (msg.isNotEmpty()){
@@ -115,18 +115,20 @@ class PunchFragment : Fragment() {
 
     /* TODO 005.15: prepara e exibe o próximo ponto */
     private fun preparePunch(){
-        punchViewModel.nextPunch.observe(viewLifecycleOwner){ result ->
+        punchViewModel.lastAndNext.observe(viewLifecycleOwner){ result ->
             when(result){
                 is Loading -> visibility(false,"Esperando os dados do ponto")
                 is Success -> {
-                    val punchCard = PunchCard.getPunchCardTypeByName(result.data.punch)
-                    setPunchButtonColor(punchCard!!)
                     fillPunchCardView(result.data)
+
+                    val newPunch = result.data.second
+                    val punchCard = PunchCard.getPunchCardTypeByName(newPunch.punch)
+                    setPunchButtonColor(punchCard!!)
+
                     visibility(true)
-                    punchRegister(result.data)
+                    punchRegister(newPunch)
                 }
                 is Error -> {
-                    Log.i("INFO", "HERE02!")
                     visibility(false,result.msg)
                 }
             }
@@ -151,21 +153,33 @@ class PunchFragment : Fragment() {
         }
 
     /* TODO 005.17: preenche o formulário de ponto */
-    private fun fillPunchCardView(punch: DataModel.Punch){
+    private fun fillPunchCardView(punches: Pair<Punch,Punch>){
         authenticationViewModel.getAuthentication().observe(viewLifecycleOwner){
-            binding.nameWorker.text = it.name
+            binding.previouspunchNameWorker.text = it.name
+            binding.nextpunchNameWorker.text = it.name
         }
-        binding.punchInfo.text = punch.punch
-        binding.timeInfo.text = punch.time.replace("-",":")
-        binding.dateInfo.text = punch.date
-        when(punch.punch){
-            PunchCard.IN.value -> binding.punchImage.setImageResource(R.drawable.gowork)
-            PunchCard.OUT.value -> binding.punchImage.setImageResource(R.drawable.gohome)
+        val lastPunch = punches.first
+
+        binding.previouspunchPunchInfo.text = lastPunch.punch
+        binding.previouspunchTimeInfo.text = lastPunch.time.replace("-",":")
+        binding.previouspunchDateInfo.text = lastPunch.date
+        when(lastPunch.punch){
+            PunchCard.IN.value -> binding.previouspunchPunchImage.setImageResource(R.drawable.gowork)
+            PunchCard.OUT.value -> binding.previouspunchPunchImage.setImageResource(R.drawable.gohome)
+        }
+
+        val nextPunch = punches.second
+        binding.nextpunchPunchInfo.text = nextPunch.punch
+        binding.nextpunchTimeInfo.text = nextPunch.time.replace("-",":")
+        binding.nextpunchDateInfo.text = nextPunch.date
+        when(nextPunch.punch){
+            PunchCard.IN.value -> binding.nextpunchPunchImage.setImageResource(R.drawable.gowork)
+            PunchCard.OUT.value -> binding.nextpunchPunchImage.setImageResource(R.drawable.gohome)
         }
     }
 
     /* TODO 005.18: realiza o registro do ponto no firebase */
-    private fun punchRegister(data: DataModel.Punch){
+    private fun punchRegister(data: Punch){
         binding.punchButton.setOnClickListener {
             Biometric.authentication(this){ isAllowed, msg ->
                 if (isAllowed) {
@@ -173,7 +187,7 @@ class PunchFragment : Fragment() {
                         .observe(viewLifecycleOwner){ response ->
                             when(response){
                                 is Loading -> visibility(true,"Registrando Ponto...")
-                                is Success -> visibility(false,"Ponto registrado com sucesso!")
+                                is Success -> visibility(true,"Ponto registrado com sucesso!")
                                 is Error   -> visibility(true,response.msg)
                             }
                         }

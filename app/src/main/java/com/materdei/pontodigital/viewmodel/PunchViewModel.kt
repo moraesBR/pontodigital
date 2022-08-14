@@ -2,6 +2,7 @@ package com.materdei.pontodigital.viewmodel
 
 import androidx.lifecycle.*
 import com.materdei.pontodigital.domain.model.DataModel
+import com.materdei.pontodigital.domain.model.DataModel.Punch
 import com.materdei.pontodigital.domain.model.Response
 import com.materdei.pontodigital.domain.model.Response.*
 import com.materdei.pontodigital.repository.PunchRepository
@@ -11,17 +12,17 @@ class PunchViewModel : ViewModel() {
 
     val punchRepository = PunchRepository()
 
-    /* TODO 005.11: encapsula a resposta do próximo ponto em um livedata */
-    val nextPunch: LiveData<Response<DataModel.Punch>> = liveData {
+    /* TODO 005.11: encapsula a resposta do último e próximo pontos em um livedata */
+    val lastAndNext: LiveData<Response<Pair<Punch, Punch>>> = liveData {
         emit(Loading)
         try {
-            emitSource(PunchRepository().nextPunch().asLiveData())
+            emitSource(PunchRepository().lastAndNext().asLiveData())
         } catch (e: Exception){
             Error(e.message ?: e.toString())
         }
     }
 
-    val fetching: LiveData<Response<List<DataModel.Punch>>> = liveData {
+    val fetching: LiveData<Response<List<Punch>>> = liveData {
         emit(Loading)
         try {
             emitSource(punchRepository.get().asLiveData())
@@ -30,7 +31,7 @@ class PunchViewModel : ViewModel() {
         }
     }
 
-    fun adding(punch: DataModel.Punch): LiveData<Response<Void?>> = liveData {
+    fun adding(punch: Punch): LiveData<Response<Void?>> = liveData {
         emit(Loading)
         try {
             emitSource(punchRepository.add(punch).asLiveData())

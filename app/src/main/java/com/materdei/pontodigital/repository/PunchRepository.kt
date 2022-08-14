@@ -33,22 +33,31 @@ class PunchRepository : DataRepository <Punch> {
     override suspend fun delete(key: String): Flow<Response<Void?>> =
         FirebaseConnection.deleteDocument(pathCollection,key)
 
-    /* TODO 005.10: gera a resposta correspondente a criação do próximo ponto em função do último
-    *   registado no firestore */
-    suspend fun nextPunch(): Flow<Response<Punch>> = get().map { result ->
+    /* TODO 005.10: Gera a resposta correspondente para obtenção do último e próximo ponto */
+    suspend fun lastAndNext(): Flow<Response<Pair<Punch,Punch>>> = get().map { result ->
         when(result){
             is Loading -> Loading
             is Success -> {
+                val today = getDate()
+                val now = getTime()
                 val lastpunch = result.data.last()
-                val punchCard = when (lastpunch.punch) {
-                    PunchCard.IN.value -> PunchCard.OUT.value
-                    else -> PunchCard.IN.value
+
+                val punchCard = if(lastpunch.date == today){
+                    when (lastpunch.punch) {
+                        PunchCard.IN.value -> PunchCard.OUT.value
+                        else -> PunchCard.IN.value
+                    }
                 }
-                val newPunch = Punch(getDate(), getTime(), punchCard)
+                else {
+                    PunchCard.IN.value
+                }
+
+                val newPunch = Punch(today, now, punchCard)
+
                 if (newPunch == lastpunch)
                     Error("Ponto já registrado. Aguarde alguns instantes para registrar outro ponto.")
                 else
-                    Success(newPunch)
+                    Success(Pair(lastpunch,newPunch))
             }
             is Error -> Error(result.msg)
         }
